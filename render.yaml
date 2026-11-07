@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: forma-studio
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./deploy/Dockerfile.render
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: false
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ENCRYPTION_SEED
+        generateValue: true
+      - key: GENERATION_MODE
+        value: local
+      - key: DEMO_MODE
+        value: "false"
+      - key: LOCAL_TTS_ENGINE
+        value: espeak
+      - key: DATA_DIR
+        value: /app/data
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:////app/data/studio.db
+      - key: STATIC_DIR
+        value: /app/static
+      - key: EPHEMERAL_STORAGE
+        value: "true"

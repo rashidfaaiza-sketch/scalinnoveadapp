@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+    env_file: backend/.env
+    environment:
+      DATA_DIR: /app/data
+      DATABASE_URL: ${DATABASE_URL:-sqlite+aiosqlite:////app/data/studio.db}
+    volumes:
+      - studio-data:/app/data
+    restart: unless-stopped
+    stop_grace_period: 20s
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  studio-data:

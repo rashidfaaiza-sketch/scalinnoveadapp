@@ -1,0 +1,6 @@
+Illustrative UI portraits copied from Creative Tim Soft UI Dashboard:
+https://github.com/creativetimofficial/soft-ui-dashboard/tree/main/assets/img
+team-1.jpg → ava.jpg
+team-2.jpg → noah.jpg
+ivana-square.jpg → mia.jpg
+License: MIT (see LICENSE.txt). These images are UI illustrations, not D-ID source presenters.
